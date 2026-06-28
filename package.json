@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spider-man-tm/blog-zenn.git"
+    "url": "git+https://github.com/takayoshi-makabe/blog-zenn.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spider-man-tm/blog-zenn/issues"
+    "url": "https://github.com/takayoshi-makabe/blog-zenn/issues"
   },
-  "homepage": "https://github.com/spider-man-tm/blog-zenn#readme",
+  "homepage": "https://github.com/takayoshi-makabe/blog-zenn#readme",
   "dependencies": {
     "zenn-cli": "^0.1.159"
   }
