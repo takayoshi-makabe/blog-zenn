@@ -22,11 +22,11 @@ published: true
 
 以下、リポジトリになります。
 
-[GitHub Repos](https://github.com/spider-man-tm/kaggle-infrastructure)
+[GitHub Repos](https://github.com/takayoshi-makabe/kaggle-infrastructure)
 
 # GCP Project のセットアップ
 
-まず始めに、GCP のプロジェクトを作成します。プロジェクト名は任意ですが、この記事では `kaggle-infra` としています。必要なコマンドは [setup-gcp-project/Makefile](https://github.com/spider-man-tm/kaggle-infrastructure/blob/main/setup-gcp-project/Makefile) にまとめているので以下のコマンドを叩けば最低限必要な準備ができた状態でプロジェクトが作成されます。
+まず始めに、GCP のプロジェクトを作成します。プロジェクト名は任意ですが、この記事では `kaggle-infra` としています。必要なコマンドは [setup-gcp-project/Makefile](https://github.com/takayoshi-makabe/kaggle-infrastructure/blob/main/setup-gcp-project/Makefile) にまとめているので以下のコマンドを叩けば最低限必要な準備ができた状態でプロジェクトが作成されます。
 
 ```bash
 cd setup-gcp-project
@@ -62,7 +62,7 @@ machine_type     = "e2-micro"
 image            = "ubuntu-os-cloud/ubuntu-2004-lts"
 network_name     = "default" # VPC Network name
 github_email     = "abc.defg@gmail.com"
-github_user_name = "spider-man-tm"
+github_user_name = "takayoshi-makabe"
 kaggle_username  = "kaggleusername" # Your Kaggle username
 
 # GCE & Network
@@ -101,8 +101,8 @@ terraform {
 }
 ```
 
-作成するインスタンスですは、GitHub のユーザー情報と、Kaggle User Name の情報を定義しています。[terraform/modules/gce/main.tf](https://github.com/spider-man-tm/kaggle-infrastructure/blob/main/terraform/modules/gce/main.tf) と
-[terraform/modules/gce/startup-script.sh.tpl](https://github.com/spider-man-tm/kaggle-infrastructure/blob/main/terraform/modules/gce/startup-script.sh.tpl) を見るとわかりますが、docker コマンドのインストール、GitHub のセットアップ、Kaggle API のセットアップ等を行なった状態で GCE が起動するようにしています。ただし、Kaggle API に利用する Kaagle Key だけは一応プライベートなものなので、先ほど GCP プロジェクトの立ち上げ時に作成した Secret Manager に対して、[data block](https://github.com/spider-man-tm/kaggle-infrastructure/blob/main/terraform/environments/competition01/main.tf) を使って参照する形にしています。
+作成するインスタンスですは、GitHub のユーザー情報と、Kaggle User Name の情報を定義しています。[terraform/modules/gce/main.tf](https://github.com/takayoshi-makabe/kaggle-infrastructure/blob/main/terraform/modules/gce/main.tf) と
+[terraform/modules/gce/startup-script.sh.tpl](https://github.com/takayoshi-makabe/kaggle-infrastructure/blob/main/terraform/modules/gce/startup-script.sh.tpl) を見るとわかりますが、docker コマンドのインストール、GitHub のセットアップ、Kaggle API のセットアップ等を行なった状態で GCE が起動するようにしています。ただし、Kaggle API に利用する Kaagle Key だけは一応プライベートなものなので、先ほど GCP プロジェクトの立ち上げ時に作成した Secret Manager に対して、[data block](https://github.com/takayoshi-makabe/kaggle-infrastructure/blob/main/terraform/environments/competition01/main.tf) を使って参照する形にしています。
 
 ```hcl
 # Get the value from secret manager
@@ -136,7 +136,7 @@ docker-compose up -d
 
 こうすることで、PR 作成時に自動的に `terraform plan` が実行され、PR のコメントに結果が表示されます。また PR のコメントに `digger plan`・`digger apply` とコメントすることで、GitHub Actions が `terraform plan`・`terraform apply` を実行します。
 
-参考：[https://github.com/spider-man-tm/kaggle-infrastructure/pull/10](https://github.com/spider-man-tm/kaggle-infrastructure/pull/10)
+参考：[https://github.com/takayoshi-makabe/kaggle-infrastructure/pull/10](https://github.com/takayoshi-makabe/kaggle-infrastructure/pull/10)
 
 # 終わりに
 
